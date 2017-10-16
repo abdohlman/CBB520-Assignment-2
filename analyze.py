@@ -228,13 +228,18 @@ def assemble_denovo(ubampath, k=64):
         display('>> Wrote unmapped reads to {0}'.format(fastapath))
         return fastapath
 
-if __name__ == "__main__":
-
-        # Dont litter
+def clean_up():
+        '''Empty directories before and after running.'''
         for f in os.listdir('/usr/lib/cgi-bin/assembly/'):
                 output, error = execute(['rm',ABYDIR + f])
         for f in os.listdir('/usr/lib/cgi-bin/tmp/'):
                 output, error = execute(['rm',TMPDIR + f])
+	return
+
+if __name__ == "__main__":
+
+        # Dont litter
+	clean_up()
 
         # Begin html document
         sys.stdout.write('Content-Type: text/html;charset=utf-8\r\n\r\n')
@@ -258,6 +263,7 @@ if __name__ == "__main__":
         ubampath = identify_unmapped(sbampath)
         fastapath = assemble_denovo(ubampath,k=KMERSIZE)
         display(tag('Pipeline has completed!','b'))
+	clean_up()
 
         # End html document
         print """\
