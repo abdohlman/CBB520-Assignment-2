@@ -1,3 +1,0 @@
-digraph dist {
-graph [k=50 s=200 n=10]
-}

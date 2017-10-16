@@ -229,7 +229,7 @@ def assemble_denovo(ubampath, k=64):
         return fastapath
 
 def clean_up():
-        '''Empty directories before and after running.'''
+        '''Empty directories after running.'''
         for f in os.listdir('/usr/lib/cgi-bin/assembly/'):
                 output, error = execute(['rm',ABYDIR + f])
         for f in os.listdir('/usr/lib/cgi-bin/tmp/'):
@@ -237,9 +237,6 @@ def clean_up():
 	return
 
 if __name__ == "__main__":
-
-        # Dont litter
-	clean_up()
 
         # Begin html document
         sys.stdout.write('Content-Type: text/html;charset=utf-8\r\n\r\n')
